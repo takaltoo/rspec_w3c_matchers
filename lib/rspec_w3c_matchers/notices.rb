@@ -21,7 +21,7 @@ module RspecW3cMatchers
     end
 
     def failure_message_for_should_not      
-      ["Did not expect #{comparison}#{@msg_count} W3C validation #{type} but was received #{notices.length} #{type}",
+      ["Did not expect #{comparison}#{@msg_count} W3C validation #{type} but received #{notices.length} #{type}",
         summary        
       ].join("\n")
     end
