@@ -51,6 +51,15 @@ shared_examples_for "w3c matcher for :>= operator" do
   end   
 end
 
+shared_examples_for "w3c matcher with description when none provided"   do
+  let(:regexp){Regexp.new("^should receive 0 W3C validation #{type} in")}
+  it "returns proper description" do
+    matcher = klass.new(dirty_page,:==,0,type)
+    matcher.matches?(dirty_response)
+    regexp.match(matcher.description).should_not be_nil  
+  end
+end
+
 shared_examples_for "w3c matcher with detailed notice reporting" do      
   let(:regexp_should_header){Regexp.new("Expected (?<expected>\\d+) W3C validation #{type.to_s}? but received (?<actual>\\d+) #{type.to_s}?")}
   let(:regexp_should_not_header){Regexp.new("Did not expect (?<expected>\\d+) W3C validation #{type.to_s}? but received (?<actual>\\d+) #{type.to_s}?")}

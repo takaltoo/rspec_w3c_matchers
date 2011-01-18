@@ -19,6 +19,7 @@ describe APP::Notices do
     it_should_behave_like "w3c matcher for :<= operator"
     it_should_behave_like "w3c matcher for :>= operator"
     it_should_behave_like "w3c matcher with detailed notice reporting"
+    it_should_behave_like "w3c matcher with description when none provided"
   end  
   
   context "Warnings" do
@@ -32,5 +33,6 @@ describe APP::Notices do
     it_should_behave_like "w3c matcher for :<= operator"
     it_should_behave_like "w3c matcher for :>= operator"
     it_should_behave_like "w3c matcher with detailed notice reporting"
+    it_should_behave_like "w3c matcher with description when none provided"    
   end
 end
