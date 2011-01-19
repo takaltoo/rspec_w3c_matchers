@@ -1,5 +1,15 @@
 module RspecW3cMatchers
-  
+  # Contains RSPEC 2.0 instance methods. To use the matchers in RSPEC 2.0,
+  # include this module inside your RSPEC config block inside of spec_helper.rb
+  # 
+  # Rspec.configure do |config|
+  #   config.include(RspecW3cMatchers::InstanceMethods)
+  # end
+  #
+  # To use matchers in Cucumber steps, simply include this module inside any 
+  # step definitions:
+  #
+  # include RspecW3cMatchers::InstanceMethods
   module InstanceMethods  
     # matcher for detecting zero errors
     def have_no_w3c_errors_in(page)

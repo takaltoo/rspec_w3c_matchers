@@ -19,13 +19,55 @@ Alternatively, you can install it as a plugin:
 RspecW3cMatchers API helpers expect the FlickRaw.api_key to be initialized before they are called:
     FlickRaw.api_key = your_flickr_api_key
 
-== Using the matchers
-RspecW3cMatchers::Api.photo(options_hash), returns object of class RspecW3cMatchers::Photo.
-The options accepted include:
-    :photo_id => "id for photo"
-    :secret => "secret for photo"
-
+== Including the matchers in Rspec or Cucumber
+In <b>RSPEC 2.0</b> tests you can place the following in your spec_helper.rb file inside the config block
+    config.include(RspecW3cMatchers::InstanceMethods)
     
+In <b>Cucumber</b> you can place the following in any step definition file that uses the helpers: 
+    include RspecW3cMatchers::InstanceMethods
+    
+== Commonly used matchers
+Matchers to detect that page is free from errors or warnings:
+    have_no_w3c_errors_in(page) 
+    have_no_w3c_errors_in(page)    
+
+Matchers to detect that page has specified number of errors or warnings:
+    have_specified_number_of_w3c_errors_in(page,number)
+    have_specified_number_of_w3c_errors_in(page,number)
+
+You can find a complete list of the matchers by looking at the RspecW3cMatchers::InstanceMethods in
+RDOCS[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]
+
+== Sample usage of matchers
+A sample RSPEC test that ensures the page has no w3c warnings or errors is given below (assuming body contains the 
+html for the page):
+      w3c = W3CValidators::MarkupValidator.new
+      response = w3c.validate_text(body)    
+      response.should have_no_w3c_errors_in(body)
+      response.should have_no_w3c_warnings_in(body)
+      
+== Generating a response object from W3C validator
+
+A w3c response is can be checked using various matchers. You can generate a w3c response using
+the w3c_validator gem:
+    w3c = W3CValidators::MarkupValidator.new
+    response = w3c.validate_text(body)
+
+Once you have the response you can compare it against a matcher. NOTE: the variable body contains the html for the page. 
+If you are using Capybara[https://github.com/jnicklas/capybara] 
+and Cucumber[https://github.com/aslakhellesoy/cucumber] you can simply
+access the text by passing in 'page.body'.
+
+A sample step file for cucumber (that is used with capybara) is given below:
+    include RspecW3cMatchers::InstanceMethods
+    
+    Then /^the page should have valid html$/ do 
+      w3c = W3CValidators::MarkupValidator.new
+      response = w3c.validate_text(page.body)    
+      response.should have_no_w3c_errors_in(page.body)
+      response.should have_no_w3c_warnings_in(page.body)
+    end 
+
 == Additional Docs
 
 * {RDOCs}[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]    
