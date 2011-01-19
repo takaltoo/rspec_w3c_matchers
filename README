@@ -1,0 +1,61 @@
+= RspecW3cMatchers
+
+Wiki[http://wiki.github.com/takaltoo/rspec_w3c_matchers] | RDocs[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]
+
+RspecW3cMatchers provides custom matchers for detecting validation errors reported by 
+{w3c validator service}[http://validator.w3.org]. The {w3c_validator gem}[https://github.com/alexdunae/w3c_validators] by
+{alexdunae}[https://github.com/alexdunae]. The matchers return detailed information regarding errors or warnings that are 
+returned by the w3c validator.
+
+== Installation
+
+In <b>Rails 3</b>, add this to your Gemfile:
+    gem "flickrmocks"
+
+Alternatively, you can install it as a plugin:
+    rails plugin install git://github.com/takaltoo/rspec_w3c_matchers.git
+
+== Getting Started
+RspecW3cMatchers API helpers expect the FlickRaw.api_key to be initialized before they are called:
+    FlickRaw.api_key = your_flickr_api_key
+
+== Using the matchers
+RspecW3cMatchers::Api.photo(options_hash), returns object of class RspecW3cMatchers::Photo.
+The options accepted include:
+    :photo_id => "id for photo"
+    :secret => "secret for photo"
+
+    
+== Additional Docs
+
+* {RDOCs}[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]    
+* Run the specs manually once you have checked out the repository:
+   rspec spec -f d
+
+		
+== Questions or Problems?
+
+If you have any issues with RspecW3cMatchers which you cannot find the solution to in the documentation,
+please add an issue on GitHub[http://github.com/takaltoo/rspec_w3c_matchers/issues] or fork the project 
+and send a pull request. 
+
+To get the specs running you should call +bundle+ and then +rake+.
+
+== Note on Patches/Pull Requests
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I do not break it 
+  in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself 
+  I can ignore when I pull)
+* Send me a pull request. 
+
+== License
+
+RspecW3cMatchers is released under the MIT license.
+
+== Copyright
+
+Copyright (c) 2010 Takaltoo

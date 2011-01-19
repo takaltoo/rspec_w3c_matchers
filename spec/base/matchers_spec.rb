@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe APP do  
+describe APP do      
   let(:klass) {APP}
   let(:matcher) {klass}
   let(:clean_page){ SampleResponses::Valid.html}

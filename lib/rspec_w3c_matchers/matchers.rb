@@ -75,6 +75,3 @@ module RspecW3cMatchers
   end
 
 end
-
-#TODO: find more specific way of including the matcher helpers
-include RspecW3cMatchers::InstanceMethods
