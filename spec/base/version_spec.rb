@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe APP do
-  let(:klass){APP}  
+  let(:klass){APP}
   context "class methods" do
     it "should have VERSION constant" do
-      klass.constants.include?(:VERSION).should be true
+      expect(klass.constants).to include(:VERSION)
     end
-    specify {klass.should respond_to(:version)}
+    specify { expect(klass).to respond_to(:version)}
     context "version" do
       it "should return the VERSION constant" do
-        klass.version.should == klass::VERSION
+        expect(klass.version).to eq klass::VERSION
       end
     end
   end

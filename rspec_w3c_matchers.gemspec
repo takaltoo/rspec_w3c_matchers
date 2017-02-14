@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Takaltoo"]
   s.email       = ["pouya@lavabit.com"]
   s.homepage    = "http://rubygems.org/gems/rspec_w3c_matchers"
-  s.summary     = %q{Rspec 2.0 matchers that detect and report detailed error and warning
+  s.summary     = %q{Rspec 3 matchers that detect and report detailed error and warning
                      responses from w3c_validators GEM.}
   s.description = %q{ add description}
 
@@ -19,8 +19,6 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
-  s.add_runtime_dependency(%q<w3c_validators>, [">= 1.1.1"])    
-  s.add_development_dependency(%q<rspec>, [">= 2.3.0"])
-  
-
+  s.add_runtime_dependency(%q<w3c_validators>, [">= 1.1.1"])
+  s.add_development_dependency(%q<rspec>, ["~> 3.5.0"])
 end
