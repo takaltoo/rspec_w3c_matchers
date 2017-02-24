@@ -2,9 +2,9 @@
 
 Wiki[http://wiki.github.com/takaltoo/rspec_w3c_matchers] | RDocs[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]
 
-RspecW3cMatchers provides custom matchers for detecting validation errors reported by 
+RspecW3cMatchers provides custom matchers for detecting validation errors reported by
 {w3c validator service}[http://validator.w3.org]. The {w3c_validator gem}[https://github.com/alexdunae/w3c_validators] by
-{alexdunae}[https://github.com/alexdunae]. The matchers return detailed information regarding errors or warnings that are 
+{alexdunae}[https://github.com/alexdunae]. The matchers return detailed information regarding errors or warnings that are
 returned by the w3c validator.
 
 == Installation
@@ -20,16 +20,16 @@ RspecW3cMatchers API helpers expect the FlickRaw.api_key to be initialized befor
     FlickRaw.api_key = your_flickr_api_key
 
 == Including the matchers in Rspec or Cucumber
-In <b>RSPEC 2.0</b> tests you can place the following in your spec_helper.rb file inside the config block
+In <b>RSpec 3</b> tests you can place the following in your spec_helper.rb file inside the config block
     config.include(RspecW3cMatchers::InstanceMethods)
-    
-In <b>Cucumber</b> you can place the following in any step definition file that uses the helpers: 
+
+In <b>Cucumber</b> you can place the following in any step definition file that uses the helpers:
     include RspecW3cMatchers::InstanceMethods
-    
+
 == Commonly used matchers
 Matchers to detect that page is free from errors or warnings:
-    have_no_w3c_errors_in(page) 
-    have_no_w3c_errors_in(page)    
+    have_no_w3c_errors_in(page)
+    have_no_w3c_errors_in(page)
 
 Matchers to detect that page has specified number of errors or warnings:
     have_specified_number_of_w3c_errors_in(page,number)
@@ -39,13 +39,13 @@ You can find a complete list of the matchers by looking at the RspecW3cMatchers:
 RDOCS[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]
 
 == Sample usage of matchers
-A sample RSPEC test that ensures the page has no w3c warnings or errors is given below (assuming body contains the 
+A sample RSpec test that ensures the page has no w3c warnings or errors is given below (assuming body contains the
 html for the page):
       w3c = W3CValidators::MarkupValidator.new
-      response = w3c.validate_text(body)    
+      response = w3c.validate_text(body)
       response.should have_no_w3c_errors_in(body)
       response.should have_no_w3c_warnings_in(body)
-      
+
 == Generating a response object from W3C validator
 
 A w3c response is can be checked using various matchers. You can generate a w3c response using
@@ -53,33 +53,33 @@ the w3c_validator gem:
     w3c = W3CValidators::MarkupValidator.new
     response = w3c.validate_text(body)
 
-Once you have the response you can compare it against a matcher. NOTE: the variable body contains the html for the page. 
-If you are using Capybara[https://github.com/jnicklas/capybara] 
+Once you have the response you can compare it against a matcher. NOTE: the variable body contains the html for the page.
+If you are using Capybara[https://github.com/jnicklas/capybara]
 and Cucumber[https://github.com/aslakhellesoy/cucumber] you can simply
 access the text by passing in 'page.body'.
 
 A sample step file for cucumber (that is used with capybara) is given below:
     include RspecW3cMatchers::InstanceMethods
-    
-    Then /^the page should have valid html$/ do 
+
+    Then /^the page should have valid html$/ do
       w3c = W3CValidators::MarkupValidator.new
-      response = w3c.validate_text(page.body)    
+      response = w3c.validate_text(page.body)
       response.should have_no_w3c_errors_in(page.body)
       response.should have_no_w3c_warnings_in(page.body)
-    end 
+    end
 
 == Additional Docs
 
-* {RDOCs}[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]    
+* {RDOCs}[http://rdoc.info/projects/takaltoo/rspec_w3c_matchers]
 * Run the specs manually once you have checked out the repository:
    rspec spec -f d
 
-		
+
 == Questions or Problems?
 
 If you have any issues with RspecW3cMatchers which you cannot find the solution to in the documentation,
-please add an issue on GitHub[http://github.com/takaltoo/rspec_w3c_matchers/issues] or fork the project 
-and send a pull request. 
+please add an issue on GitHub[http://github.com/takaltoo/rspec_w3c_matchers/issues] or fork the project
+and send a pull request.
 
 To get the specs running you should call +bundle+ and then +rake+.
 
@@ -87,12 +87,12 @@ To get the specs running you should call +bundle+ and then +rake+.
 
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add tests for it. This is important so I do not break it 
+* Add tests for it. This is important so I do not break it
   in a future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself 
+  (if you want to have your own version, that is fine but bump version in a commit by itself
   I can ignore when I pull)
-* Send me a pull request. 
+* Send me a pull request.
 
 == License
 
