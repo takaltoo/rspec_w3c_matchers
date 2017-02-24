@@ -6,11 +6,12 @@ require 'shared_examples/notice_matcher'
 require 'shared_examples/matchers'
 require 'responses/responses'
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   #  c.mock_with :mocha
   APP = RspecW3cMatchers
-  
+
   # include the matchers
   config.include(APP::InstanceMethods)
-end
 
+  config.raise_errors_for_deprecations!
+end
